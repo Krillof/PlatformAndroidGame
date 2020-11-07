@@ -13,7 +13,7 @@ public class CannonBehavior : MonoBehaviour
 
     int spriteNumber = 0;
     int interval = 0;
-    int intervalMax = 150;
+    int intervalMax = Config.maxIntervalBetweenCannonShots;
 
     void Start()
     {
@@ -38,13 +38,10 @@ public class CannonBehavior : MonoBehaviour
         }
         else
         {
-            int k = ((int)((( (float) interval) / intervalMax) * 100));
-            int j = ((int)((((float) spriteNumber) / sprites.Length) * 100));
-            if (k >= j)
-            {
-                sr.sprite = sprites[spriteNumber++];
-                if (spriteNumber == sprites.Length) spriteNumber = 0;
-            }
+            spriteNumber = Mathf.FloorToInt((((float)interval) / intervalMax) * sprites.Length);         
+            sr.sprite = sprites[spriteNumber];
+            if (spriteNumber == sprites.Length) spriteNumber = 0;
+            
 
             interval++;
         }

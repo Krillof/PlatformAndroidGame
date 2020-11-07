@@ -13,10 +13,8 @@ public class GameController : MonoBehaviour
 {
     static List<GameObject> platforms = new List<GameObject>();
     static public bool isGameOn = false;
-
-    
+    static public bool isGameStop = false;
     static public bool destroyAllGameObjects = true;
-
     bool isFreezeImageBlue = false;
 
     public static int IndividualPlatformLine = 0;
@@ -74,6 +72,11 @@ public class GameController : MonoBehaviour
         BackgroundMusic.InGame();
         isGameOn = true;
         MainObjects.GameController.SendMessage("SpawnStartPlatform");
+
+        if (!InfoSaver.SavedData.isSeenPlayer)
+        {
+            MainObjects.TutorialDialogs.SendMessage("ShowPlayerDialog");
+        }
     }
 
     public static void EndGame()
@@ -236,7 +239,7 @@ public class GameController : MonoBehaviour
         int k = 0;
         while (true)
         {
-            if (isGameOn)
+            if (isGameOn && (!isGameStop))
             {
                 k = platforms.Count;
                 for (int f = 0; f < k; f++)
@@ -283,7 +286,7 @@ public class GameController : MonoBehaviour
     IEnumerator SpawnGameCycle()
     {
         while (true){
-            if (isGameOn)
+            if (isGameOn && (!isGameStop))
             {
                 for (int lineIndex = 0; lineIndex < Config.linesAmount; lineIndex++)
                 {

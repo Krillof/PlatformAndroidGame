@@ -12,6 +12,7 @@ public class ScreenButton : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData e)
     {
+        print(Name);
         MainController.ButtonPressed(Name);
     }
 }

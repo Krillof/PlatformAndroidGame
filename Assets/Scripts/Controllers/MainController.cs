@@ -6,7 +6,15 @@ public class MainController : MonoBehaviour
 {
     public static void ButtonPressed(string name)
     {
-        if (GameController.isGameOn)
+        if (GameController.isGameStop)
+        {
+            switch (name)
+            {
+                case "Unstop":
+                    MainObjects.TutorialDialogs.SendMessage("Unstop");
+                    break;
+            }
+        } else if (GameController.isGameOn)
         {
             if (name.Contains("Inventory")) InventoryController.ButtonPressed(name);
             else
@@ -21,8 +29,7 @@ public class MainController : MonoBehaviour
                         break;
                 }
             }
-        }
-        else
+        } else
         {
             switch (name)
             {

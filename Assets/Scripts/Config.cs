@@ -21,9 +21,10 @@ public class Config : MonoBehaviour
     public float _playerJumpSpeed = 0.2f;
     public int   _playerMaxJumpTime = 8;
     public float _cameraMoveStepSize = 0.025f;
-    public float _arrowSpeed = 0.2f;
+    public float _arrowSpeedX = 0.2f;
     public float _destroyArrowOnDistanceX = 4f;
     public int _maxAccumulatorValue = 1500;
+    public int _maxIntervalBetweenCannonShots = 150;
 
     static public bool isCharacterImmuneToAllTraps;
     static public float accelerationCoefficent;
@@ -42,9 +43,11 @@ public class Config : MonoBehaviour
     static public float playerJumpSpeed;
     static public int   playerMaxJumpTime;
     static public float cameraMoveStepSize;
-    static public float arrowSpeed;
+    static public float arrowSpeedX;
     static public float destroyArrowOnDistanceX;
-    static public int maxAccumulatorValue = 1500;
+    static public int maxAccumulatorValue;
+    static public int maxIntervalBetweenCannonShots;
+
 
     void Start()
     {
@@ -65,8 +68,9 @@ public class Config : MonoBehaviour
         playerJumpSpeed =                       _playerJumpSpeed;
         playerMaxJumpTime =                     _playerMaxJumpTime;
         cameraMoveStepSize =                    _cameraMoveStepSize;
-        arrowSpeed =                            _arrowSpeed;
+        arrowSpeedX =                           _arrowSpeedX;
         destroyArrowOnDistanceX =               _destroyArrowOnDistanceX;
         maxAccumulatorValue =                   _maxAccumulatorValue;
+        maxIntervalBetweenCannonShots =         _maxIntervalBetweenCannonShots;
     }
 }

@@ -9,6 +9,7 @@ public class MainObjects : MonoBehaviour
     public GameObject _StaticCanvas;
     public GameObject _TopPad;
     public GameObject _GameObjectsParent;
+    public GameObject _TutorialDialogs;
 
     static public GameObject Player;
     static public GameObject GameController;
@@ -17,6 +18,7 @@ public class MainObjects : MonoBehaviour
     static public GameObject StaticCanvas;
     static public GameObject TopPad;
     static public GameObject GameObjectsParent;
+    static public GameObject TutorialDialogs;
 
     void Start()
     {
@@ -27,5 +29,6 @@ public class MainObjects : MonoBehaviour
         StaticCanvas = _StaticCanvas;
         TopPad = _TopPad;
         GameObjectsParent = _GameObjectsParent;
+        TutorialDialogs = _TutorialDialogs;
     }
 }

@@ -7,6 +7,7 @@ public class MenuCanvasBehavior : MonoBehaviour
     public GameObject topPart;
     public GameObject bottomPart;
     public GameObject gameButton;
+    public GameObject pad;
 
     Vector3 startPointTopPart;
     Vector3 bottomPointBottomPart;
@@ -63,12 +64,14 @@ public class MenuCanvasBehavior : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
+        pad.SetActive(true);
         gameButton.SetActive(true);
     }
 
     void StartGame()
     {
         gameButton.SetActive(false);
+        pad.SetActive(false);
         StartCoroutine(OpenDoor());
     }
 

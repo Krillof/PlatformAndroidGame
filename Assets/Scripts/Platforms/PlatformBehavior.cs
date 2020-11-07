@@ -80,6 +80,7 @@ public class PlatformBehavior : MonoBehaviour
         Fires = new GameObject();
         Fires.transform.parent = Platform.transform;
         FiresSR = Fires.AddComponent<SpriteRenderer>();
+        FiresSR.sortingOrder = -7;
 
         isMoving = true;
     }

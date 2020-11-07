@@ -89,6 +89,9 @@ public class InfoSaver : MonoBehaviour
     {
         public int MaxDistance = 0;
         public int Money = 0;
+        public bool isSeenPlayer = false;
+        public bool isSeenCannon = false;
+        public bool isSeenBonus = false;
     }
 
     private static FileWork file;
