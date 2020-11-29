@@ -37,6 +37,21 @@ public class MainController : MonoBehaviour
                     MainObjects.GameController.SetActive(true);
                     GameController.StartGame();
                     break;
+                case "Stats":
+                    StatsController.GoToStats();
+                    break;
+                case "StatsBack":
+                    StatsController.BackToMenu();
+                    break;
+                case "UpFreeze":
+                    StatsController.UpFreeze();
+                    break;
+                case "UpDisableVoltage":
+                    StatsController.UpDisableVoltage();
+                    break;
+                case "UpShield":
+                    StatsController.UpShield();
+                    break;
             }
         }
     }

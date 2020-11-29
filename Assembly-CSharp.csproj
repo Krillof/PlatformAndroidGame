@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\Config.cs" />
      <Compile Include="Assets\Scripts\Controllers\GameController.cs" />
      <Compile Include="Assets\Scripts\Controllers\MainController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\StatsController.cs" />
      <Compile Include="Assets\Scripts\InfoSaver.cs" />
      <Compile Include="Assets\Scripts\MainObjects.cs" />
      <Compile Include="Assets\Scripts\Other\BackgroundController.cs" />

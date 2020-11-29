@@ -92,6 +92,10 @@ public class InfoSaver : MonoBehaviour
         public bool isSeenPlayer = false;
         public bool isSeenCannon = false;
         public bool isSeenBonus = false;
+
+        public int ShieldStat = 0;
+        public int DisableVoltageStat = 0;
+        public int FreezeStat = 0;
     }
 
     private static FileWork file;
