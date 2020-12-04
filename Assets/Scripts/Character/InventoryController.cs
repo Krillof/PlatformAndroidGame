@@ -47,17 +47,21 @@ public class InventoryController : MonoBehaviour
         switch (item)
         {
             case InventoryItems.IgnoreTraps:
-                MainCharacter.ignoreTrapsIterations += 1500;
+                MainCharacter.ignoreTrapsStartTime = GameController.gameTime;
+                MainCharacter.ignoreTraps = true;
                 break;
             case InventoryItems.Teleport:
                 PreTeleportCheck.CheckPlace(ReturningDraggableObject.LastEndX, ReturningDraggableObject.LastEndY);
                 InventoryControllerObject.SendMessage("TeleportItem_Action");
                 break;
             case InventoryItems.Freeze:
-                MainCharacter.freezeIterations += 1500;
+                MainCharacter.freezeStartTime = GameController.gameTime;
+                MainCharacter.freeze = true;
                 break;
             case InventoryItems.DisableVoltage:
                 MainObjects.TopPad.SendMessage("ResetAccumulatorsValues");
+                MainCharacter.ignoreAccumulationStartTime = GameController.gameTime;
+                MainCharacter.ignoreAccumulation = true;
                 break;
             case InventoryItems.PlatformSpawner:
                 int line = GameController.FloatToLine(ReturningDraggableObject.LastEndX);

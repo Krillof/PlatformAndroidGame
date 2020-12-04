@@ -114,7 +114,7 @@ public class PlatformBehavior : MonoBehaviour
 
             if (k > Config.speedMax) k = Config.speedMax;
 
-            if (MainCharacter.freezeIterations > 0) k -= speed / 2;
+            if (MainCharacter.freeze) k -= speed / 2;
 
             Platform.transform.position = new Vector3(
                 x,

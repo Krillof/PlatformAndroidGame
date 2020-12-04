@@ -20,8 +20,16 @@ public class MainCharacter : MonoBehaviour
     static public float PlatformOffset = 0;
 
     static public int MoneyCount = 0;
-    static public int ignoreTrapsIterations = 0;
-    static public int freezeIterations = 0;
+
+    static public bool ignoreTraps = false;
+    static public int ignoreTrapsStartTime = 0;
+
+    static public bool freeze = false;
+    static public int freezeStartTime = 0;
+
+    static public bool ignoreAccumulation = false;
+    static public int ignoreAccumulationStartTime = 0;
+
     static public int currentJumpDistance = 0;
 
 
@@ -103,14 +111,14 @@ public class MainCharacter : MonoBehaviour
                 break;
             case "Trap":
                 if (!Config.isCharacterImmuneToAllTraps)
-                    if (ignoreTrapsIterations == 0)
+                    if (!ignoreTraps)
                         {
                             EndGame();
                         }
                 break;
             case "ElectricTrap":
                 if (!Config.isCharacterImmuneToAllTraps)
-                    if (ignoreTrapsIterations == 0)
+                    if (!ignoreTraps)
                     {
                         EndGame();
                         ChangingPlayerTexture.AnimateElectricDeath();
@@ -172,7 +180,7 @@ public class MainCharacter : MonoBehaviour
 
     public void Move()
     {
-        if (ignoreTrapsIterations > 0)
+        if (ignoreTraps)
         {
             ShieldSphere.SetActive(true);
         } else

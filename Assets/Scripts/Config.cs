@@ -25,6 +25,7 @@ public class Config : MonoBehaviour
     public float _destroyArrowOnDistanceX = 4f;
     public int _maxAccumulatorValue = 1500;
     public int _maxIntervalBetweenCannonShots = 150;
+    public float _bonusActiveSecondsDuration = 10f;
 
     static public bool isCharacterImmuneToAllTraps;
     static public float accelerationCoefficent;
@@ -47,6 +48,7 @@ public class Config : MonoBehaviour
     static public float destroyArrowOnDistanceX;
     static public int maxAccumulatorValue;
     static public int maxIntervalBetweenCannonShots;
+    static public float bonusActiveSecondsDuration;
 
 
     void Start()
@@ -72,5 +74,6 @@ public class Config : MonoBehaviour
         destroyArrowOnDistanceX =               _destroyArrowOnDistanceX;
         maxAccumulatorValue =                   _maxAccumulatorValue;
         maxIntervalBetweenCannonShots =         _maxIntervalBetweenCannonShots;
+        bonusActiveSecondsDuration =            _bonusActiveSecondsDuration;
     }
 }

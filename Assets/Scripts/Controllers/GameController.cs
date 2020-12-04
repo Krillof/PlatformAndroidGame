@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour
     static public bool destroyAllGameObjects = true;
     bool isFreezeImageBlue = false;
 
+    public static int gameTime = 0;
+
     public static int IndividualPlatformLine = 0;
     public static float IndividualPlatformY = 0f;
     public delegate void IndividualPlatformSpawnFailureDelegate();
@@ -26,6 +28,7 @@ public class GameController : MonoBehaviour
     {
         StartCoroutine(SpawnGameCycle());
         StartCoroutine(MovingGameCycle());
+        StartCoroutine(GameTimeCounter());
     }
 
     public static int FloatToLine(float x)
@@ -100,8 +103,6 @@ public class GameController : MonoBehaviour
         MainObjects.TopPad.SendMessage("SetText", $"Best: {InfoSaver.SavedData.MaxDistance}");
         isGameOn = false;
         MainObjects.GameCanvas.SetActive(false);
-        MainCharacter.freezeIterations = 0;
-        MainCharacter.ignoreTrapsIterations = 0;
         destroyAllGameObjects = true;
         MainObjects.TopPad.SendMessage("ResetAccumulatorsValues");
         BackgroundMusic.InMenu();
@@ -234,6 +235,15 @@ public class GameController : MonoBehaviour
         Destroy(checkBox);
     }
 
+    IEnumerator GameTimeCounter()
+    {
+        while (true)
+        {
+            gameTime++;
+            yield return new WaitForSeconds(2f);// at 1f it works two times per second!
+        }
+    }
+
     IEnumerator MovingGameCycle()
     {
         int k = 0;
@@ -255,9 +265,13 @@ public class GameController : MonoBehaviour
                     MainObjects.TopPad.SendMessage("Moving");
 
 
-                if (MainCharacter.freezeIterations > 0)
+                if (MainCharacter.freeze)
                 {
-                    MainCharacter.freezeIterations -= 1;
+                    if (gameTime - MainCharacter.freezeStartTime >= Config.bonusActiveSecondsDuration + InfoSaver.SavedData.FreezeStat)
+                    {
+                        MainCharacter.freeze = false;
+                    }
+
                     if (!isFreezeImageBlue) {
                         Prefabs.FreezeImage.color = new Color(0, 0, 255, 0.1f);
                         isFreezeImageBlue = true;
@@ -269,14 +283,24 @@ public class GameController : MonoBehaviour
                     isFreezeImageBlue = false;
                 }
 
-                if (MainCharacter.ignoreTrapsIterations > 0)
+                if (MainCharacter.ignoreTraps)
                 {
-                    MainCharacter.ignoreTrapsIterations--;
+                    if (gameTime - MainCharacter.ignoreTrapsStartTime >= Config.bonusActiveSecondsDuration + InfoSaver.SavedData.ShieldStat)
+                    {
+                        MainCharacter.ignoreTraps = false;
+                    }
                 }
 
-                //StoppingTrapSpawningObject.SendMessage("ControlMarks");
+                if (MainCharacter.ignoreAccumulation)
+                {
+                    if (gameTime - MainCharacter.ignoreTrapsStartTime >= Config.bonusActiveSecondsDuration + InfoSaver.SavedData.DisableVoltageStat)
+                    {
+                        MainCharacter.ignoreAccumulation = false;
+                    }
+                }
+                else MainObjects.TopPad.SendMessage("Accumulate");
 
-                MainObjects.TopPad.SendMessage("Accumulate");
+                //StoppingTrapSpawningObject.SendMessage("ControlMarks");
             }
 
             yield return new WaitForSeconds(Config.movingGameCycleTime);
